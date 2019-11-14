@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load blog_extras %}
+<!-- Blog Post -->
+{% block main %}
+<div class="col-md-8">
+    <ol class="post-list">
+        {% for article in article_list %}
+
+        <li class="post-list-item">
+            <h3 class="post-list-title">
+                <a class="hvr-underline-from-center" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+            </h3>
+
+            <p class="post-list-description">{{ article.excerpt }}</p>
+            <p class="post-list-meta">
+                <span class="octicon octicon-calendar"></span> Posted on {{ article.created_time }} by
+                <a href="/about.html">{{ article.author }}</a>
+            </p>
+        </li>
+
+        {% empty %}
+        <li class="post-list-item">
+            <h3 class="post-list-title">
+                暂时还没有发布的文章！
+            </h3>
+        </li>
+        {% endfor %}
+    </ol>
+
+    {% block pagination %}
+    <div class="pagination text-align">
+        <div class="btn-group">
+            {% if article_list.has_previous %}
+                <button disabled="disabled" href="?page={{ article_list.previous_page_number }}" class="btn btn-outline">«</button>
+            {% endif %}
+            
+            <button class="btn btn-outline">
+                On <a>{{ article_list.number }}</a> - All <a>{{ article_list.paginator.num_pages }}</a>
+            </button>
+            <!--a href="javascript:;" class="active btn btn-outline">1</a-->
+            {% if articles.has_next %}
+                <a href="?page={{ articles.next_page_number }}" class="btn btn-outline">»</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock pagination %}
+
+</div>
+{% endblock main %}
+
+
+
+<!-- 侧边栏 -->
+{% block sidebar %}
+<div class="col-md-4">
+    <!-- 外部链接Github，知乎，微博，RSS -->
+    <div class="card text-center">
+        <div class="thumbnail">
+                <div class="card-description">
+                    <ul class="list-inline" style="margin-left: 0;">
+                        <li>
+                            <a target="_blank" href="https://github.com/wadasworths">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="www.zhihu.com/people/solman">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://weibo.com/u/5040234393">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="{% url 'rss' %}">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+    
+    <!-- 文章分类目录 -->
+    <h3 class="sidebar-title">文章归档</h3>
+    <div class="card text-category">
+        <div class="category">
+            {% get_categories as category_list %}
+            <div class="card-description">
+                {% for category in category_list %}
+                    <li class="side-category">
+                        <a target="_blank" href="{% url 'blog:category' category.pk %}">
+                            {{ category.name }} ({{ category.num_posts }})
+                        </a>
+                    </li>
+                {% empty %}
+                    <li class="side-category">
+                        <a target="_blank" href="#">暂无分类</a>
+                    </li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 文章标签 -->
+    <h3 class="sidebar-title">所有标签</h3>
+    <div class="card text-center">
+        <div class="thumbnail">
+                <div class="card-description">
+                    {% get_tags as tag_list %}
+                    <ul class="list-inline" style="margin-left: 0;">
+                        {% for tag in tag_list %}
+                            <li><a target="_blank" href="#">{{ tag.name }}</a></li>
+                        {% empty %}
+                            <li><a target="_blank" href="#">暂无标签</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+        </div>
+    </div>
+
+    <!-- 最近推送文章 -->
+    <h3 class="sidebar-title">最近推送</h3>
+    <div class="card text-category">
+        <div class="category">
+            {% get_recent_posts as recent_list %}
+            <div class="card-description">
+                    {% for recent in recent_list %}
+                        <li class="side-category">
+                            <a target="_blank" href="{{ recent.get_absolute_url }}">{{ recent.title }}</a>
+                        </li>
+                    {% empty %}
+                        <li class="side-category"><a target="_blank" href="/">暂无推送</a></li>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock sidebar %}

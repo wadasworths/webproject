@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load blog_extras %}
+{% block main %}
+
+<section class="post container">
+    <section class="label-section">
+        <h3><small>标签列表</small></h3>
+        <hr>
+    
+        {% get_tags as tag_list %}
+        <div>
+            {% for tag in tag_list %}
+                <span class="post-label">{{ tag.name }}</span>
+            {% empty %}
+                <span class="post-label">暂无标签</span>
+            {% endfor %}
+        </div>
+    
+    </div>
+    
+    <ul class="archives-list">
+    {% regroup article_list by created_time.year as year_article_list %}
+        {% for year in year_article_list %}
+        <h3>{{ year.grouper }} 年</h3>
+            {% for article in year.list %}
+            <li>
+                <span><td>{{ article.created_time|date:"m-d" }}</td></span>
+                <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+            </li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock main %}

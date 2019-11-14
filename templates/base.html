@@ -1,0 +1,125 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="longfellow的个人网站">
+  <meta name="author" content="longfellow">
+
+  <title>longFellow</title>
+
+  <link rel="shortcut icon" href="{%static 'images/favicon.ico' %}">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/index.css' %}" rel="stylesheet">
+  <link href="{% static 'css/common.css' %}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <!--link href="{% static 'vendor/bootstrap/highlights/github.css' %}" rel="stylesheet"-->
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="site-header-topbar">
+            <div class="container">
+                <div class="topbar-menu">
+                    <div class="item">
+                        <a href="#" target="_self" title="笔记">
+                            笔记
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="/admin" target="_self" title="博客">
+                            博客
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="mailto:longfellow.wang@gmail.com" target="_self" title="Gmail"">
+                            Gmail
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="/about.html" target="_self" title="关于">
+                            关于
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <a id="site-header-brand" href="/" title="longfellow">
+                <span class="octicon octicon-smiley"></span>
+                longfellow
+            </a>
+            <nav class="site-header-nav" role="navigation">
+                <div class=" site-header-nav-item hvr-underline-from-center">
+                    <a href="/" target="" title="Home">
+                        Home
+                    </a>
+                </div>
+                <!--div class=" site-header-nav-item hvr-underline-from-center">
+                    <a href="/spring-cloud.html" target="_self" title="Spring Cloud">
+                        Spring Cloud
+                    </a>
+                </div-->
+                <div class=" site-header-nav-item hvr-underline-from-center">
+                    <a href="/archives.html" target="_self" title="Archives">
+                        Archives
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+<div class="content">
+    
+    <section class="jumbotron">
+        <div class="container">
+            <h2>What the Heart of the Young Man</h2>
+        </div>
+    </section>
+
+    <section class="content container">
+        <div class="row">
+            <!-- Post List -->
+                {% block main %}
+                
+                <!-- Pagination -->
+                {% block pagination %}
+                {% endblock pagination %}
+                
+                {% endblock main %}
+
+
+            {% block sidebar %}
+            {% endblock sidebar %}
+
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="container">
+    <div class="site-footer">
+        <div class="copyright pull-left">
+            <a href="https://github.com/DONGChuan/Yummy-Jekyll">Yummy Jekyll</a>
+        </div>
+
+        <div class="pull-right">
+            <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+        </div>
+    </div>
+
+    <div class="pull-mid">
+        <p>Copyright &copy; longfellow.wang@gmail.com</p>
+    </div>
+    
+    <!-- Third-Party JS -->
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/geopattern.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</footer>
+
+</html>
