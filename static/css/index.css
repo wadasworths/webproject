@@ -1,0 +1,85 @@
+/** Only for index.html **/
+
+.site-header{
+    color: #fff;
+    background: #4183c4;
+}
+.site-header #site-header-brand {
+    color: #fff;
+}
+
+.site-header .site-header-nav-item {
+    color: #9acfea;
+}
+
+.site-header a:hover {
+    color: #fff;
+}
+.icon-logo{fill: #fff;}
+
+.jumbotron {
+    /*background: #4183c4;*/
+    background-image: url(../images/home.jpg);
+}
+
+.site-header.site-header-nav-scrolled a {
+    color: #2e2e2e;
+}
+
+
+.site-header.site-header-nav-scrolled #site-header-brand {
+    color: #2e2e2e !important;
+}
+
+.site-header.site-header-nav-scrolled a:hover {
+    color: #4183c4;
+}
+
+.site-header .site-header-nav-item a {
+    color: #000000;
+    /* #9acfea;*/
+}
+
+.pull-mid {
+    text-align: center;
+    left: 50%;
+    right: 50%;
+}
+
+.category {
+    display:block;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom:20px;
+    line-height:1.42857143;
+    background-color:#fff;
+    border:1px solid #ddd;
+    border-radius:4px;
+}
+
+.side-category {
+    list-style:none;
+    margin: 8px;
+}
+
+.label-section {
+    margin-bottom:20px
+}
+
+.label-section .post-label {
+    display:inline-block;
+    font-size:14px;
+    color:#555;
+    background:#FFEFD5;
+    border:1px solid #aaa;
+    border-radius:2px;
+    padding:4px 8px;
+    margin:7px 7px 7px 7px;
+    cursor:pointer
+}
+    
+.label-section .post-label.select{
+    color:#fff;
+    background:#f59b4d
+}
